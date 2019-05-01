@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Index Page</title>
+    
+        <script src="js/jquery-3.4.0.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    
+        <script src="js/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    
+        <!--Bootstrap css -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css" />
+            <link rel="stylesheet" type="text/css" href="css/bootstrap-datepicker3.css">
+            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.43/css/bootstrap-datetimepicker.min.css">
+    
+    
+    </head>
+
+<header>
+    <div class="navbar bg-light">
+        <a href="create.html">Create Account</a>
+        <a href="index.html">Classic</a>
+        <a href=>Ethereum</a>
+        <a href="hyperledger.html">HyperLedger</a>
+    </div>
+</header>
+
+<body>
+    <br>
+
+    <div class="container offset-1.5">
+
+        <div class="row">
+            <aside class="col-sm-3">
+                <div class="card">
+                    <article class="card-body">
+                        <input id="entryBarrierButton" class="float-right btn btn-outline-primary col-3" value="Enter"
+                            readonly></input>
+                        <h4 class="card-title mb-4 mt-1">Entry Barrier</h4>
+                        <hr>
+                        <form>
+                            <div class="form-group">
+                                <label>Date for Booking</label>
+                                <input id="entrydate" type="text" class="form-control">
+                            </div> <!-- form-group// -->
+                            <div class="form-group">
+
+                                <label>Location</label>
+                                <select id="entryLocationInput" class="browser-default custom-select">
+                                    <option selected>Select a Location</option>
+                                    <option value="1">London</option>
+                                    <option value="2">Manchester</option>
+                                    <option value="3">Bristol</option>
+                                </select>
+                            </div> <!-- form-group// -->
+
+                        </form>
+                    </article>
+                </div> <!-- card.// -->
+
+            </aside> <!-- col.// -->
+
+            <aside class="col-sm-5">
+
+                <div class="card">
+                    <article class="card-body">
+                        <h4 class="card-title text-center mb- mt-1">User Selecter</h4>
+                        <hr>
+                        <form>
+                            <div class="form-group">
+                                <label>User</label>
+                                <select id="userinput" class="browser-default custom-select">
+                                    <option selected>Select an address</option>
+                                </select>
+                            </div> <!-- form-group// -->
+                            <div class="form-group">
+                                <label>Balance</label>
+                                <input id="moneyinput" class="form-control" readonly>
+                            </div> <!-- form-group// -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input id="bookButton" class="btn btn-primary btn-block" value="Book Ticket"
+                                            readonly></input>
+                                    </div> <!-- form-group// -->
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <input id="topUpButton" class="btn btn-primary btn-block" value="Top up"
+                                        readonly></input>
+                                </div>
+                            </div> <!-- .row// -->
+                        </form>
+                    </article>
+                </div> <!-- card.// -->
+
+            </aside> <!-- col.// -->
+            <aside class="col-sm-3">
+                <div class="card">
+                    <article class="card-body">
+                        <input id="exitBarrierButton" class="float-right btn btn-outline-primary col-3" value="Exit"
+                            readonly></input>
+                        <h4 class="card-title mb-4 mt-1">Exit Barrier</h4>
+                        <hr>
+                        <form>
+                            <div class="form-group">
+                                <label>Date for Booking</label>
+                                <input id="exitdate" type="text" class="form-control">
+                            </div> <!-- form-group// -->
+                            <div class="form-group">
+
+                                <label>Location</label>
+                                <select id="exitLocationInput" class="browser-default custom-select">
+                                    <option selected>Select a location</option>
+                                    <option value="1">London</option>
+                                    <option value="2">Manchester</option>
+                                    <option value="3">Bristol</option>
+                                </select>
+                            </div> <!-- form-group// -->
+
+                        </form>
+                    </article>
+                </div> <!-- card.// -->
+
+            </aside> <!-- col.// -->
+        </div> <!-- row.// -->
+
+    </div>
+    <!--container end.//-->
+
+    <br>
+
+    <!-- Hidden SQL Manager -->
+    <div id="addmodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <!-- Fills in space in the back with white background -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="title">Top up</h5>
+                </div>
+                <div class="modal-body">
+                    <select id="topUpInput" class="browser-default custom-select">
+                        <option selected>Decide how much money you want to input</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="200">200</option>
+                    </select>
+                </div>
+                <!-- Button separated from textareas in its own divider -->
+                <div class="modal-footer">
+                    <input type="button" id="addBtn" onclick="addMoney()" value="Add" class="btn btn-success">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Example DataTables Card-->
+    <!-- Container for wrapping around the edges-->
+    <div class="content-wrapper">
+        <div class="container-fluid offset-1">
+            <aside class="col-sm-10">
+                <!--Card with no header-->
+                <div class="card">
+                    <!-- Data Table -->
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover" id="supplytable">
+                                <thead>
+                                    <tr>
+                                        <th>TicketID</th>
+                                        <th>TX Hash</th>
+                                        <th>Journey Type</th>
+                                        <th>Date</th>
+                                        <th>Starting Station</th>
+                                        <th>Exit Station</th>
+                                        <th>Payment</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodyrail"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer small text-muted" id="datedemo">Updated at </div>
+                </div>
+        </div>
+    </div>
+    </div>
+
+    <script type="text/javascript">
+        var userArray = null;
+        var selectedUserID = null;
+        var entryInput = null;
+        var exitInput = null;
+        var selectedUserMoney = 0;
+
+        $(document).ready(function () { //jquery function after pageload
+            var d = new Date();
+            $("#datedemo").append(Date());
+            $("#supplytable").DataTable(); //Plugin that creates a filter, display limit and viewpage
+            $.get('/getAccounts', function (response) {
+                userArray = response;
+                console.log(userArray);
+                for (let i = 1; i < response.length; i++) {
+                    var curraccount = response[i];
+                    $('#userinput').append("<option value='" + curraccount + "'>" + curraccount + "</option>");
+                }
+            })
+        });
+
+        function addMoney() {
+            if ($('#topUpInput option:selected').val() == "Decide how much money you want to input") {
+                return 0;
+            }
+            console.log("£" + $('#topUpInput option:selected').val() + " added to account");
+            var selectedMoney = parseInt($('#topUpInput option:selected').val()) + selectedUserMoney;
+            $.post('/sendCoin', {
+                amount: $('#topUpInput option:selected').val(),
+                sender: userArray[0], receiver: selectedUserID
+            }, function (response) {
+            })
+
+            $.post('/getBalance', {
+                account: selectedUserID
+            }, function (response) {
+                console.log(response);
+                $("#moneyinput").attr('value', response[0]);
+            });
+
+            $("#addmodal").modal('hide');
+        }
+
+        $("#topUpButton").on('click', function () {
+            console.log("He has " + selectedUserMoney);
+            if ($('#userinput option:selected').html() == "Select a User") {
+                return;
+            }
+            $("#addmodal").modal('show');
+        });
+
+
+        //Balance change for when user selected gets changed
+        $("#userinput").change(function () {
+            $("#supplytable").DataTable().destroy();
+            $("#tbodyrail").empty();
+            if ($('#userinput option:selected').html() == "Select an address") {
+                $("#moneyinput").attr('value', "0");
+                selectedUserID = null;
+                $("#supplytable").DataTable();
+                return;
+            }
+            selectedUserID = $('#userinput option:selected').val();
+            //console.log(selectedUserID);
+            //get Money
+            $.post('/getBalance', {
+                account: selectedUserID
+            },
+                function (response) {
+                    console.log(response);
+                    $("#moneyinput").attr('value', response[0]);
+                    getExistingData(0, 25, selectedUserID);
+                });
+
+            // if ($(this).val() >= 0) {
+            //     $("#moneyinput").attr('value', "£" + selectedUserMoney);
+            //     selectedUserID = $(this).val();
+            //     selectedUserID++;
+            //     getExistingData(0, 25, selectedUserID);
+            // } else {
+
+            // }
+        });
+
+        //Wehn a change in the entry location has occured
+        $("#entryLocationInput").change(function () {
+            if ($(this).val() >= 0) {
+                //console.log("Entry location changed to " + $('#entryLocationInput option:selected').html());
+                entryInput = $('#entryLocationInput option:selected').html();
+            } else {
+                entryInput = null;
+            }
+        });
+
+        //Store variable of exit location
+        $("#exitLocationInput").change(function () {
+            if ($(this).val() >= 0) {
+                // console.log("Exit location changed to " + $('#exitLocationInput option:selected').html());
+                exitInput = $('#exitLocationInput option:selected').html();
+            } else {
+                exitInput = null;
+            }
+        });
+
+        function getExistingData(start, limit, userID) {
+            console.log("get existing data");
+            $.ajax({
+                url: 'sql2',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    key: 'getExistingData',
+                    start: start,
+                    limit: limit,
+                    userID: userID
+                }),
+                success: function (response) {
+                    //console.log(response);
+                    if (response != "reachedMax") {
+                        $('#tbodyrail').append(response);
+                        start += limit;
+                        getExistingData(start, limit, userID);
+                    } else {
+                        console.log("Updating datatable");
+                        $("#supplytable").DataTable();
+                    }
+                }
+            });
+        }
+
+        $("#bookButton").on('click', function () {
+            console.log("book button pressed");
+
+            if (selectedUserID == null) {
+                console.log("No user selected");
+                return;
+            }
+
+            if ($("#moneyinput").val() < 10) {
+                console.log("Insufficient funds");
+                return;
+            }
+
+            if (entryInput == null) {
+                console.log("No entry location selected");
+                return;
+            }
+
+            if (exitInput == null) {
+                console.log("No exit location selected");
+                return;
+            }
+
+            if (exitInput == entryInput) {
+                console.log("You can't travel to the same location");
+                return;
+            }
+
+            console.log("he got money");
+
+            $.post('/sendCoin', {
+                amount: 10,
+                sender: selectedUserID,
+                receiver: userArray[0]
+            }, function (response) {
+                $("#moneyinput").attr('value', response);
+            });
+
+            $.ajax({
+                url: 'sql2',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    key: 'bookTicket',
+                    userID: selectedUserID,
+                    entryInput: entryInput,
+                    exitInput: exitInput,
+                    date: $("#entrydate").datepicker("getDate")
+                }),
+                success: function (response) {
+                    if (response == "Transaction still pending") {
+                        alert("booking unsuccessful");
+                    } else {
+                        $('#tbodyrail').append(response);
+                    }
+                }
+            });
+
+        });
+
+        $("#entryBarrierButton").on('click', function () {
+            console.log("entry button pressed")
+
+            if (selectedUserID == null) {
+                console.log("No user selected");
+                return;
+            }
+
+            if ($("#moneyinput").val() < 5) {
+                console.log("Insufficient funds");
+                return;
+            }
+
+            if (entryInput == null) {
+                console.log("No entry location selected");
+                return;
+            }
+
+            $.ajax({
+                url: 'sql2',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    key: 'enterBarrier',
+                    userID: selectedUserID,
+                    entryInput: entryInput
+                }),
+                success: function (response) {
+                    $('#tbodyrail').append(response);
+                }
+            });
+        });
+
+        $("#exitBarrierButton").on('click', function () {
+            console.log("exit button pressed");
+
+            if (selectedUserID == null) {
+                console.log("No user selected");
+                return;
+            }
+
+            if ($("#moneyinput").val() < 5) {
+                console.log("Insufficient funds");
+                return;
+            }
+
+            if (exitInput == null) {
+                console.log("No exit location selected");
+                return;
+            }
+
+            //send money
+            $.post('/sendCoin', {
+                amount: 5,
+                sender: selectedUserID,
+                receiver: userArray[0]
+            }, function (response) {
+                $("#moneyinput").attr('value', response);
+            });
+
+            $.ajax({
+                url: 'sql2',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    key: 'exitBarrier',
+                    userID: selectedUserID,
+                    exitInput: exitInput,
+                }),
+                success: function (response) {
+                    $("#tbodyrail tr:last").remove();
+                    $('#tbodyrail').append(response);
+                }
+            });
+        });
+
+
+        $('#entrydate').datepicker({
+
+        });
+
+        $('#exitdate').datetimepicker({
+            format: 'LT'
+        });
+
+
+
+    </script>
+</body>
+
+
+</html>

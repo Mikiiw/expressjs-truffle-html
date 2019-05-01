@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Index Page</title>
+
+    <script src="js/jquery-3.4.0.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+    <!--Bootstrap css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-datepicker3.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.43/css/bootstrap-datetimepicker.min.css">
+
+
+</head>
+
+<header>
+    <div class="navbar bg-light">
+        <a href="create.html">Create Account</a>
+        <a href="index.html">Classic</a>
+        <a href=>Ethereum</a>
+        <a href="hyperledger.html">HyperLedger</a>
+    </div>
+</header>
+<br>
+
+<body>
+
+    <div class="container offset-4">
+
+        <div class="row">
+
+            <aside class="col-sm-5">
+
+                <div class="card">
+                    <article class="card-body">
+                        <h4 class="card-title text-center mb- mt-1">Booking Blockchain System</h4>
+                        <hr>
+                        <form>
+                            <div class="form-group">
+                                <label>User</label>
+                                <select id="userinput" class="browser-default custom-select">
+                                    <option selected>Select an address</option>
+                                </select>
+                            </div> <!-- form-group// -->
+                            <div class="form-row">
+                                <div class="col">
+                                    <label>Entry Location</label>
+                                    <select id="entryLocationInput" class="browser-default custom-select">
+                                        <option selected>Select a Location</option>
+                                        <option value="1">London</option>
+                                        <option value="2">Manchester</option>
+                                        <option value="3">Bristol</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label>Exit Location</label>
+                                    <select id="exitLocationInput" class="browser-default custom-select">
+                                        <option selected>Select a Location</option>
+                                        <option value="1">London</option>
+                                        <option value="2">Manchester</option>
+                                        <option value="3">Bristol</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div style="line-height:100%;">
+                                <br>
+                            </div>
+                            <div class="form-group">
+                                <label>Balance</label>
+                                <input id="moneyinput" class="form-control" readonly>
+                            </div> <!-- form-group// -->
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input id="bookButton" class="btn btn-primary btn-block" value="Book Ticket"
+                                            readonly></input>
+                                    </div> <!-- form-group// -->
+                                </div>
+                                <div class="col-md-4 text-right">
+                                    <input id="checkButton" class="btn btn-primary btn-block" value="Check Valid"
+                                        readonly></input>
+                                </div>
+
+                                <div class="col-md-4 text-right">
+                                    <input id="mineButton" class="btn btn-primary btn-block" value="Mine"
+                                        readonly></input>
+                                </div>
+
+                            </div> <!-- .row// -->
+                        </form>
+                    </article>
+                </div> <!-- card.// -->
+
+            </aside> <!-- col.// -->
+
+        </div> <!-- row.// -->
+
+    </div>
+    <!--container end.//-->
+
+    <br>
+
+    <!-- Hidden SQL Manager -->
+    <div id="tableManager" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="title">Data Tampering</h5>
+                </div>
+                <div class="modal-body">
+                    <label>Journey Type</label>
+                    <input type="text" class="form-control" placeholder="" id="journeyInput">
+                    <label>TimeStamp</label>
+                    <input type="text" class="form-control" placeholder="" id="timestampInput">
+                    <label>Starting Station</label>
+                    <input type="text" class="form-control" placeholder="" id="startStationInput">
+                    <label>Exit Station</label>
+                    <input type="text" class="form-control" placeholder="" id="endStationInput">
+                    <label>Payment</label>
+                    <input type="text" class="form-control" placeholder="" id="paymentInput">
+                    <input type="hidden" id="ticketingID" value="0">
+                </div>
+
+                <!-- Button separated from textareas in its own divider -->
+                <div class="modal-footer">
+                    <input type="button" id="editBtn" onclick="save($('#ticketingID').val())" value="Save"
+                        class="btn btn-success">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Example DataTables Card-->
+    <!-- Container for wrapping around the edges-->
+    <div class="content-wrapper">
+        <div class="container-fluid offset-1">
+            <aside class="col-sm-10">
+                <!--Card with no header-->
+                <div class="card">
+                    <!-- Data Table -->
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover" id="supplytable">
+                                <thead>
+                                    <tr>
+                                        <th>TicketID</th>
+                                        <th>Journey Type</th>
+                                        <th>Timestamp</th>
+                                        <th>Starting Station</th>
+                                        <th>Exit Station</th>
+                                        <th>Payment</th>
+                                        <th>Edit</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodyrail"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer small text-muted" id="datedemo">Updated at </div>
+                </div>
+        </div>
+    </div>
+    </div>
+
+    <script type="text/javascript">
+        var userArray = null;
+        var selectedUserID = null;
+        var entryInput = null;
+        var exitInput = null;
+        var selectedUserMoney = 0;
+
+        $(document).ready(function () { //jquery function after pageload
+            var d = new Date();
+            $("#datedemo").append(Date());
+            $("#supplytable").DataTable(); //Plugin that creates a filter, display limit and viewpage
+            getUsers();
+        });
+
+        //Balance change for when user selected gets changed
+        $("#userinput").change(function () {
+            $("#supplytable").DataTable().destroy();
+            $("#tbodyrail").empty();
+            if ($('#userinput option:selected').html() == "Select an address") {
+                $("#moneyinput").attr('value', "0");
+                selectedUserID = null;
+                $("#supplytable").DataTable();
+                return;
+            }
+            selectedUserID = $('#userinput option:selected').val();
+            getExistingData(selectedUserID);
+            getMoney();
+
+        });
+
+        //When a change in the entry location has occured
+        $("#entryLocationInput").change(function () {
+            if ($(this).val() >= 0) {
+                //console.log("Entry location changed to " + $('#entryLocationInput option:selected').html());
+                entryInput = $('#entryLocationInput option:selected').html();
+            } else {
+                entryInput = null;
+            }
+        });
+
+        //Store variable of exit location
+        $("#exitLocationInput").change(function () {
+            if ($(this).val() >= 0) {
+                // console.log("Exit location changed to " + $('#exitLocationInput option:selected').html());
+                exitInput = $('#exitLocationInput option:selected').html();
+            } else {
+                exitInput = null;
+            }
+        });
+
+        function getMoney() {
+            $.ajax({
+                url: 'basics',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    key: 'getBalance',
+                    userID: selectedUserID
+                }),
+                success: function (response) {
+                    //console.log(response);
+                    $("#moneyinput").attr('value', response);
+                }
+            });
+        }
+
+        function getUsers() {
+            $.ajax({
+                url: 'sql',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    key: 'getUsers',
+                }),
+                success: function (response) {
+                    userArray = response;
+                    console.log(response);
+                    for (var i = 0; i < response.length; i++)
+                        $("#userinput").append('<option value="' + i + '">' + response[i].Firstname + " " + response[i].Lastname + '</option>')
+                }
+            })
+        }
+
+        function edit(ticketID) {
+            console.log("editing");
+            $.ajax({
+                url: 'basics',
+                method: 'POST',
+                dataType: 'json',
+                data: {
+                    key: 'edit',
+                    ticketID: ticketID
+                }, success: function (response) {
+                    console.log("success");
+                    $("#journeyInput").attr('value', response.journeyType);
+                    $("#timestampInput").attr('value', response.timestamp);
+                    $("#startStationInput").attr('value', response.start);
+                    $("#endStationInput").attr('value', response.exit);
+                    $("#paymentInput").attr('value', response.amount);
+                    $("#ticketingID").attr('value', ticketID);
+                    $("#tableManager").modal('show');
+                }
+            });
+        }
+
+        function save(ticketID) {
+            $.ajax({
+                url: 'basics',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    key: 'save',
+                    ticketID: ticketID,
+                    journeyType: $("#journeyInput").val(),
+                    timestamp: $("#timestampInput").val(),
+                    start: $("#startStationInput").val(),
+                    exit: $("#endStationInput").val(),
+                    payment: $("#paymentInput").val()
+                }),
+                success: function (response) {
+                    console.log($("#startingStation" + ticketID).html());
+                    $("#journey" + ticketID).html($("#journeyInput").val());
+                    $("#timestamp" + ticketID).html($("#timestampInput").val());
+                    $("#startingStation" + ticketID).html($("#startStationInput").val());
+                    $("#exitStation" + ticketID).html($("#endStationInput").val());
+                    $("#Payment" + ticketID).html($("#paymentInput").val());
+                    $("#tableManager").modal('hide');
+                }
+            });
+        }
+
+        function getExistingData(userID) {
+            console.log("get existing data");
+            $.ajax({
+                url: 'basics',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    key: 'getExistingData',
+                    userID: userID
+                }),
+                success: function (response) {
+                    $('#tbodyrail').append(response);
+                    console.log("Updating datatable");
+                    $("#supplytable").DataTable();
+                }
+            });
+        }
+
+        $("#bookButton").on('click', function () {
+            console.log("book button pressed");
+
+            if (selectedUserID == null) {
+                console.log("No user selected");
+                return;
+            }
+
+            if ($("#moneyinput").val() < 10) {
+                console.log("Insufficient funds");
+                return;
+            }
+
+            if (entryInput == null) {
+                console.log("No entry location selected");
+                return;
+            }
+
+            if (exitInput == null) {
+                console.log("No exit location selected");
+                return;
+            }
+
+            if (exitInput == entryInput) {
+                console.log("You can't travel to the same location");
+                return;
+            }
+
+            console.log("he got money");
+
+            $.ajax({
+                url: 'basics',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    key: 'bookTicket',
+                    userID: selectedUserID,
+                    entryInput: entryInput,
+                    exitInput: exitInput,
+                }),
+                success: function (response) {
+                    if (response == "Transaction still pending") {
+                        alert("booking unsuccessful");
+                    }
+                }
+            });
+
+        });
+
+        $("#mineButton").on('click', function () {
+            $.ajax({
+                url: 'basics',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    key: 'mineData'
+                }),
+                success: function (response) {
+                    $("#supplytable").DataTable().destroy();
+                    $("#tbodyrail").empty();
+                    getExistingData(selectedUserID);
+                    getMoney();
+                }
+            });
+        });
+
+        $("#checkButton").on('click', function () {
+            $.ajax({
+                url: 'basics',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    key: 'checkData'
+                }),
+                success: function (response) {
+                    if (response == true) {
+                        alert("Chain is valid");
+                    } else {
+                        alert("Chain has been tampered with");
+                    }
+
+                }
+            });
+        });
+
+
+        $('#entrydate').datepicker({
+
+        });
+
+        $('#exitdate').datetimepicker({
+            format: 'LT'
+        });
+
+
+
+    </script>
+</body>
+
+
+</html>
